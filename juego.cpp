@@ -1,7 +1,6 @@
 #include "juego.h"
 
 int mostrarMenuJugada() {
-	int menu;
 
 	int op;
 
@@ -29,7 +28,7 @@ void iniciaJuego(tJuego &juego, const tSudoku &sudoku) {
 
 bool cargaJuego(tJuego &juego, const tSudoku &sudoku) {
 	bool ok = false;
-	if (cargarTablero(juego.sudoku.fichero, juego.tablero)) {
+	if (cargarTablero(sudoku.fichero, juego.tablero)) {
 		ok = true;
 	}
 	return ok;
@@ -41,8 +40,9 @@ void mostrarJuego(const tJuego &juego) {
 
 }
 
-int jugarUnSudoku(const tSudoku &sudoku,tJuego &juego) {
-	int puntos;
+int jugarUnSudoku(const tSudoku &sudoku) {
+	int puntos=0;
+	tJuego juego;
 	iniciaJuego(juego, sudoku);
 	bool ok = cargaJuego(juego, sudoku);
 	if (ok) {
@@ -51,26 +51,42 @@ int jugarUnSudoku(const tSudoku &sudoku,tJuego &juego) {
 		while ((opcion != 0) && !juego.terminado) {
 			switch (opcion) {
 			case 1: {
-
+				int f, c;
+				cout << "Escribe las filas y columnas de la caja." << endl;
+				cout << "Fila: "; cin >> f; 
+				cout << "Columna: "; cin >> c; 
+				mostrarPosibles(juego.tablero, f, c);
 				break;
 			}
 			case 2: {
-
+				int f,c,valor;
+				cout << "Escribe las filas y columnas de la caja." << endl;
+				cout << "Fila: "; cin >> f; 
+				cout << "Columna: "; cin >> c; 
+				cout << "Escribe una valor." << endl;
+				cout << "Valor: "; cin >> valor;
+				ponerNum(juego.tablero, f, c, valor);
 				break;
 			}
 			case 3: {
-
+				int f, c;
+				cout << "Escribe las filas y columnas de la caja." << endl;
+				cout << "Fila: "; cin >> f; 
+				cout << "Columna: "; cin >> c; 
+				borrarNum(juego.tablero, f, c);
 				break;
 			}
 			case 4: {
-
+				iniciaJuego(juego, sudoku);
+				cargaJuego(juego, sudoku);
 				break;
 			}
 			case 5: {
-
+				rellenarSimples(juego.tablero);
 				break;
 			}
 			default: {
+				opcion = mostrarMenuJugada();
 				break;
 			}
 
@@ -79,7 +95,7 @@ int jugarUnSudoku(const tSudoku &sudoku,tJuego &juego) {
 			mostrarJuego(juego);
 			if (tableroLleno(juego.tablero)) {
 				juego.terminado = true;
-				puntos = juego.sudoku.nivel;
+				puntos = sudoku.nivel;
 			}
 			else {
 				opcion = mostrarMenuJugada();

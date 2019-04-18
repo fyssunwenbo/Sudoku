@@ -17,6 +17,7 @@ bool cargar(tListaSudokus &lista) {
 		cout << "ERROR:No se ha podido abrir el archivo: " << listaSudokus << endl;
 	}
 	else {
+		creaListaVacia(lista);
 		int i = 0;
 		while ((!inputFile.eof())&&i<MAX_SUDOKUS) {
 				inputFile >> lista.array[i].fichero >> lista.array[i].nivel;
@@ -30,13 +31,13 @@ bool cargar(tListaSudokus &lista) {
 
 void mostrar(const tListaSudokus &lista) {
 	cout << "     NOMBRE       NIVEL" << endl;
-	for (int i = 0; i < lista.cont; i++) {
-		cout << i + 1 << ".---" << lista.array[i].fichero << right << setw(4) << lista.array[i].nivel << endl;
+	for (int i = 0; i < lista.cont-1; ++i) {
+		cout << i + 1 << "." << lista.array[i].fichero << right << setw(4) << lista.array[i].nivel << endl;
 	}
 }
 
 int menuListaSudokus(const tListaSudokus &lista, tJuego &juego) {
-	int op; float points;
+	int op; int points;
 	mostrar(lista);
 	cout << "Choose a Sudoku Game: " << endl;
 	cin >> op;
@@ -44,10 +45,12 @@ int menuListaSudokus(const tListaSudokus &lista, tJuego &juego) {
 		cout << "Choose a Sudoku Game: " << endl;
 		cin >> op;
 	}
-	if (op <= lista.cont||points==lista.array[op-1].nivel) {
-		points=jugarUnSudoku(lista.array[op-1], juego);
+	if (op <= lista.cont ) {
+		points=jugarUnSudoku(lista.array[op-1]);
+		if (points == lista.array[op - 1].nivel) {
+			juego.terminado = true;
+		}
 	}
-	
-	return points;
 
+	return points;
 }

@@ -149,11 +149,14 @@ bool borrarNum(tTablero tablero, int fila, int col) {
 }	
 
 bool tableroLleno(const tTablero tablero) {
-	bool ok;
+	bool ok=false;
 	for (int i = 0; i < DIMENSION; i++) {
 		for (int j = 0; j < DIMENSION; j++) {
 			if (tablero[i][j].estado == RELLENO && tablero[i][j].posibles.nElems==1) {
 				ok = true;
+			}
+			else {
+				ok = false;
 			}
 		}
 	}

@@ -18,22 +18,21 @@ int menu() {
 int main() {
 
 	tListaSudokus lista;
+	tJuego juego;
 	bool ok = cargar(lista);
 	if (!ok) {
 		cout << "ERROR" << endl;
 	}
 	else {
 		int opcion = menu();
+		while (opcion != 0) {
+			menuListaSudokus(lista,juego);
+			opcion = menu();
 
+		}
 
 
 	}
-		
-		opcion = menu()
-		mientras(opci¨®n != 0)
-		menuListaSudokus(lista)
-		opcion = menu()
-
 	system("pause");
 	return 0;
 }

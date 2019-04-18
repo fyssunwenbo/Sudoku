@@ -9,13 +9,13 @@ typedef struct {
 typedef struct {
 	tSudoku sudoku;
 	tTablero tablero;
-	bool terminado; // indica si el tablero est芍 relleno
+	bool terminado=false; // indica si el tablero est芍 relleno
 } tJuego;
 
 int mostrarMenuJugada(); /* muestra el men迆 de opciones del juego y
 devuelve una opci車n valida introducida por el jugador.*/
 
-int jugarUnSudoku(const tSudoku &sudoku, tJuego &juego); /* dada la informaci車n del
+int jugarUnSudoku(const tSudoku &sudoku); /* dada la informaci車n del
 sudoku elegido lleva a cabo todas las acciones correspondientes a
 haber elegido la opci車n 1 de esta versi車n y devuelve la puntuaci車n
 obtenida por el jugador (0 si aborta la resoluci車n antes de rellenar
