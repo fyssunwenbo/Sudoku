@@ -36,7 +36,7 @@ void mostrar(const tListaSudokus &lista) {
 	}
 }
 
-int menuListaSudokus(const tListaSudokus &lista, tJuego &juego) {
+int menuListaSudokus(const tListaSudokus &lista) {
 	int op; int points;
 	mostrar(lista);
 	cout << "Choose a Sudoku Game: " << endl;
@@ -47,9 +47,7 @@ int menuListaSudokus(const tListaSudokus &lista, tJuego &juego) {
 	}
 	if (op <= lista.cont ) {
 		points=jugarUnSudoku(lista.array[op-1]);
-		if (points == lista.array[op - 1].nivel) {
-			juego.terminado = true;
-		}
+		
 	}
 
 	return points;

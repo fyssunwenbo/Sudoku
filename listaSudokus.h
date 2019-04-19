@@ -21,6 +21,6 @@ se ha podido realizar. */
 void mostrar(const tListaSudokus &lista); /* visualiza por pantalla la
 lista de sudokus dada.*/
 
-int menuListaSudokus(const tListaSudokus &lista, tJuego &juego); /* muestra la lista
+int menuListaSudokus(const tListaSudokus &lista); /* muestra la lista
 de sudokus, lee la selecci¨®n del jugador e invoca a la funci¨®n
 jugarUnSudoku con el sudoku correspondiente(del array de sudokus).*/

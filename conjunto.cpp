@@ -38,7 +38,7 @@ void annadeElemento(tConjunto &c, int e) {
 void borraElemento(tConjunto &c, int e) {
 	bool ok = false;
 	int i = 0;
-	while (!ok&&i < c.nElems) {
+	while (!ok && i < c.nElems) {
 		if (e == c.elementos[i]) {
 			ok = true;
 			for (int j = i; j < c.nElems; ++j) {

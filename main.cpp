@@ -18,7 +18,6 @@ int menu() {
 int main() {
 
 	tListaSudokus lista;
-	tJuego juego;
 	bool ok = cargar(lista);
 	if (!ok) {
 		cout << "ERROR" << endl;
@@ -26,7 +25,7 @@ int main() {
 	else {
 		int opcion = menu();
 		while (opcion != 0) {
-			menuListaSudokus(lista,juego);
+			menuListaSudokus(lista);
 			opcion = menu();
 
 		}

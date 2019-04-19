@@ -29,7 +29,7 @@ bool cargarTablero(string nombreFichero, tTablero tablero) {
 					/*if (pertenece(tablero[i][j].posibles, tablero[i][j].numero) &&tablero[i][j].estado != FIJA) {
 						borraElemento(tablero[i][j].posibles, tablero[i][j].numero);
 					}*/
-					if (tablero[i][j].estado != VACIO) {
+					if (tablero[i][j].estado == FIJA) {
 						quitarPosibles(tablero, i, j);
 					}
 				}
@@ -72,6 +72,7 @@ void quitarPosibles(tTablero tablero, int x, int y) {
 	if (tablero[x][y].estado == FIJA) {
 		cjto_vacio(tablero[x][y].posibles);
 		annadeElemento(tablero[x][y].posibles, num);
+		tablero[x][y].posibles.nElems = 0;
 	}
 		for (int i = 0; i < DIMENSION; i++) {
 			if (tablero[x][i].estado != FIJA && pertenece(tablero[x][i].posibles, num)) {
@@ -106,6 +107,7 @@ bool ponerNum(tTablero tablero, int fila, int col, int c) {
 	}
 	else {
 		rellenaCasilla(tablero[fila - 1][col - 1], '0' + c,true);
+
 		quitarPosibles(tablero, fila - 1, col - 1);
 		ok = true;
 	}
@@ -149,17 +151,23 @@ bool borrarNum(tTablero tablero, int fila, int col) {
 }	
 
 bool tableroLleno(const tTablero tablero) {
-	bool ok=false;
+	bool ok = false, ok1 = true;
 	for (int i = 0; i < DIMENSION; i++) {
 		for (int j = 0; j < DIMENSION; j++) {
-			if (tablero[i][j].estado == RELLENO && tablero[i][j].posibles.nElems==1) {
-				ok = true;
+			
+			if (tablero[i][j].estado == VACIO) {
+				ok1 = false;
 			}
-			else {
-				ok = false;
+
+			if (tablero[i][j].estado == RELLENO  ) {
+				
+				if (tablero[i][j].posibles.nElems == 0) {
+					ok = true;
+				}							
 			}
 		}
 	}
+	ok = ok && ok1;
 	return ok;
 }
 
@@ -175,6 +183,8 @@ void rellenarSimples(tTablero tablero) {
 			if (esSimple(tablero[i][j], tablero[i][j].numero)) {
 				rellenaCasilla(tablero[i][j], '0' + tablero[i][j].numero,true);
 				quitarPosibles(tablero, i, j);
+				
+
 			}
 		}
 	}
