@@ -1,0 +1,6 @@
+Ana             22
+Belen           50
+Clara            8
+Lola            50
+Luis             4
+Pedro           40

@@ -56,6 +56,8 @@ int jugarUnSudoku(const tSudoku &sudoku) {
 				cout << "Fila: "; cin >> f; 
 				cout << "Columna: "; cin >> c; 
 				mostrarPosibles(juego.tablero, f, c);
+				cout << juego.tablero[f - 1][c - 1].estado << endl;
+				cout << juego.tablero[f - 1][c - 1].posibles.nElems << endl;
 				system("pause");
 				break;
 			}
