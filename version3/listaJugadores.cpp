@@ -175,7 +175,7 @@ tListaJugadores ordenarPorRanking(const tListaJugadores &lista) {
 	tListaJugadores ranking; tJugadorPtr t;
 	ranking = copia(lista);
 	for (int i = 0; i < ranking.cont-1; i++) {
-		for (int j = i; j < ranking.cont-i-1; j++) {
+		for (int j = 0; j < ranking.cont-i-1; j++) {
 			if (ranking.jugadores[j]->puntos < ranking.jugadores[j + 1]->puntos) {
 				t = ranking.jugadores[j];
 				ranking.jugadores[j] = ranking.jugadores[j+1];
